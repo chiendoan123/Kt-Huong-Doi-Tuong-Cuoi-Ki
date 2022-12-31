@@ -15,11 +15,11 @@ namespace GUI
             Console.WriteLine("-------------------Menu Quan li thu---------------");
             Console.WriteLine(ShowAllDulieu());
             Console.WriteLine("--------------------------------------------------");
-            Console.WriteLine("1.Them");
-            Console.WriteLine("2. Xoa");
-            Console.WriteLine("3. Sua");
-            Console.WriteLine("4. Tim kiem");
-            Console.WriteLine("5. Sap xep");
+            Console.WriteLine("1. Them thu");
+            Console.WriteLine("2. Xoa thu");
+            Console.WriteLine("3. Sua thu");
+            Console.WriteLine("4. Tim kiem thu");
+            Console.WriteLine("5. Sap xep thu");
             Console.WriteLine("6. Tro ve menu chinh");
             Console.WriteLine("7. Thoat");
             Console.WriteLine("Moi ban nhap lua chon: ");
@@ -30,7 +30,7 @@ namespace GUI
                 case 2: XoaThu(); MenuThu(); break;
                 case 3: SuaThu(); MenuThu(); break;
                 case 4: TimKiemThu(); MenuThu(); break;
-                //case 5: SapXepThu(); break;
+                case 5: SapXepThu(); MenuThu(); break;
                 case 6: MainGUI.MenuChinh(); break;
                 case 7: Thoat(); break;
                 default:
@@ -39,10 +39,25 @@ namespace GUI
 
             }            
         }                    
-
+        static void SapXepThu()
+        {
+            List<ThuDTO> ListThus = GetAllDuLieu();
+            for (int i = 0; i < ListThus.Count; i++)
+            {
+                for (int j = 0; j<ListThus.Count-1; j++)
+                {
+                    if (ListThus[j].Idthu > ListThus[j + 1].Idthu)
+                    {
+                        ThuDTO tam = ListThus[j];
+                        ListThus[j]= ListThus[j + 1];
+                        ListThus[j + 1] = tam;
+                    }
+                }
+            }
+            ThuBUS.SapXep(ListThus);
+        }
         static void ThemThu()
         {
-
             Console.WriteLine("Nhap id cua thu");
             int Idthu = int.Parse(Console.ReadLine());
             Console.WriteLine("Nhap loai thu");
@@ -105,7 +120,7 @@ namespace GUI
         {
             List<ThuDTO> listThu = new List<ThuDTO>();
             string[] hang = ThuBUS.GetAllDuLieu().Split("\r\n");
-            for (int i = 1; i < hang.Length-1; i++)
+            for (int i = 1; i < hang.Length; i++)
             {
                 string[] cot = hang[i].Split("\t");
                 ThuDTO thu = new ThuDTO(int.Parse(cot[0]), cot[1], cot[2], cot[3], cot[4]);
