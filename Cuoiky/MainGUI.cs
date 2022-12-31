@@ -28,10 +28,7 @@ namespace Cuoiky
                 default: ThongBaoKoXuLi();MenuChinh();
                     break;
             }
-        }
-        
-        
-        
+        }       
         static void Thoat()
         {
             Console.Clear();
@@ -41,8 +38,6 @@ namespace Cuoiky
         {
             Console.WriteLine("Khong the nhan dang ban nhap gi? Vui long nhap lai!!!!!");
             Console.ReadLine();
-        }
-
-        
+        }       
     }
 }

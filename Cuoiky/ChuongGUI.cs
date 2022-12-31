@@ -73,12 +73,10 @@ namespace GUI
         Nhap:
             bool hople = false;
             int id = 0;
-
             List<ChuongDTO> ListChuong = GetAllDuLieu();
             bool kt = false;
             while (kt == false)
             {
-
                 while (hople == false)
                 {
                     try
@@ -129,25 +127,23 @@ namespace GUI
             return ChuongBUS.GetAllDuLieu();
         }
         static void SuaChuong()
-        {
-            List<ChuongDTO> ListChuong = GetAllDuLieu();
+        {            
             Console.WriteLine("Nhap id can sua: ");
             int idCanSua = int.Parse(Console.ReadLine());
-
+            List<ChuongDTO> ListChuong = GetAllDuLieu();
             bool kt = false;
             for (int i = 0; i < ListChuong.Count; i++)
             {
                 if (ListChuong[i].IDchuong == idCanSua)
                 {
-                    Console.WriteLine("Nhap id cua thu");
+                    Console.WriteLine("Nhap id cua chuong");
                     int Idchuong = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Nhap loai thu");
+                    Console.WriteLine("Nhap loai chuong");
                     string Tenchuong = Console.ReadLine();                    
                     ListChuong[i].IDchuong = Idchuong;
-                    ListChuong[i].Tenchuong = Tenchuong;
-                    
+                    ListChuong[i].Tenchuong = Tenchuong;                   
                     kt = true;
-                    ChuongBUS.Sua(ListChuong);
+                    ChuongBUS.Sua(idCanSua, ListChuong);
                     Console.WriteLine("Sua thanh cong!!!");
                 }
             }
@@ -162,23 +158,22 @@ namespace GUI
             Console.WriteLine("Nhap id can tim: ");
             int idCanTim = int.Parse(Console.ReadLine());
             List<ChuongDTO> ListChuong = GetAllDuLieu();
+            bool kt = false;
             for (int i = 0; i < ListChuong.Count; i++)
-            {
-                bool kt = false;
+            {               
                 if (ListChuong[i].IDchuong == idCanTim)
                 {
                     Console.WriteLine("IDchuong\tTenchuong");
                     Console.WriteLine("{0}\t{1}", ListChuong[i].IDchuong, ListChuong[i].Tenchuong);
                     kt = true;
-                }
-                if (kt == false)
-                {
-                    Console.WriteLine("Khong tim thay!!!");
-                }
+                }               
+            }
+            if (kt == false)
+            {
+                Console.WriteLine("Khong tim thay!!!");
             }
             Console.ReadLine();
         }
-
         static void Thoat()
         {
             Console.Clear();

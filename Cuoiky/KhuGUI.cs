@@ -71,7 +71,6 @@ namespace GUI
         Nhap:
             bool hople = false;
             int id = 0;
-
             List<KhuDTO> ListKhu = GetAllDuLieu();
             bool kt = false;
             while (kt == false)
@@ -127,11 +126,10 @@ namespace GUI
             return ChuongBUS.GetAllDuLieu();
         }
         static void SuaKhu()
-        {
-            List<KhuDTO> ListKhu = GetAllDuLieu();
+        {            
             Console.WriteLine("Nhap id can sua: ");
             int idCanSua = int.Parse(Console.ReadLine());
-
+            List<KhuDTO> ListKhu = GetAllDuLieu();
             bool kt = false;
             for (int i = 0; i < ListKhu.Count; i++)
             {
@@ -143,9 +141,8 @@ namespace GUI
                     string Tenkhu = Console.ReadLine();
                     ListKhu[i].Idkhu = Idkhu;
                     ListKhu[i].Tenkhu = Tenkhu;
-
                     kt = true;
-                    KhuBUS.Sua(ListKhu);
+                    KhuBUS.Sua(idCanSua, ListKhu);
                     Console.WriteLine("Sua thanh cong!!!");
                 }
             }
@@ -160,23 +157,23 @@ namespace GUI
             Console.WriteLine("Nhap id can tim: ");
             int idCanTim = int.Parse(Console.ReadLine());
             List<KhuDTO> ListKhu = GetAllDuLieu();
+            bool kt = false;
             for (int i = 0; i < ListKhu.Count; i++)
-            {
-                bool kt = false;
+            {                
                 if (ListKhu[i].Idkhu == idCanTim)
                 {
-                    Console.WriteLine("IDchuong\tTenchuong");
+                    Console.WriteLine("Idkhu\tTenkhu");
                     Console.WriteLine("{0}\t{1}", ListKhu[i].Idkhu, ListKhu[i].Tenkhu);
                     kt = true;
-                }
-                if (kt == false)
-                {
-                    Console.WriteLine("Khong tim thay!!!");
-                }
+                }                
+            }
+            if (kt == false)
+            {
+                Console.WriteLine("Khong tim thay!!!");
             }
             Console.ReadLine();
         }
-
+        
         static void Thoat()
         {
             Console.Clear();

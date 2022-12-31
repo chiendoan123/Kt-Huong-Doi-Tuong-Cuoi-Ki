@@ -36,7 +36,6 @@ namespace GUI
                 default:
                     ThongBaoKoXuLi(); MenuThu();
                     break;
-
             }            
         }                    
         static void SapXepThu()
@@ -77,8 +76,7 @@ namespace GUI
         {
             Nhap:
             bool hople = false;
-            int id = 0;
-            
+            int id = 0;            
             List<ThuDTO> ListThus = GetAllDuLieu();
             bool kt = false;
             while (kt == false)
@@ -134,11 +132,10 @@ namespace GUI
            return ThuBUS.GetAllDuLieu();
         }
         static void SuaThu()
-        {
-            List<ThuDTO> ListThus = GetAllDuLieu();
+        {           
             Console.WriteLine("Nhap id can sua: ");
             int idCanSua = int.Parse(Console.ReadLine());
-            
+            List<ThuDTO> ListThus = GetAllDuLieu();
             bool kt = false;
             for (int i = 0; i < ListThus.Count; i++)
             {                
@@ -160,7 +157,7 @@ namespace GUI
                     ListThus[i].Nguongoc = Nguongoc;
                     ListThus[i].Suckhoe = Suckhoe;
                     kt = true;
-                    ThuBUS.Sua(ListThus);
+                    ThuBUS.Sua(idCanSua, ListThus);
                     Console.WriteLine("Sua thanh cong!!!");
                 }
             }
@@ -175,23 +172,22 @@ namespace GUI
             Console.WriteLine("Nhap id can tim: ");
             int idCanTim = int.Parse(Console.ReadLine());
             List<ThuDTO> ListThus = GetAllDuLieu();
+            bool kt = false;
             for (int i = 0; i < ListThus.Count; i++)
-            {
-                bool kt = false;
+            {             
                 if(ListThus[i].Idthu == idCanTim)
                 {
                     Console.WriteLine("Idthu\tLoai\tTen\tNguongoc\tSuckhoe");
                     Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}",ListThus[i].Idthu, ListThus[i].Loai, ListThus[i].Ten, ListThus[i].Nguongoc, ListThus[i].Suckhoe);
                     kt = true;
                 }
-                if (kt==false)
-                {
-                    Console.WriteLine("Khong tim thay!!!");
-                }
+            }
+            if (kt == false)
+            {
+                Console.WriteLine("Khong tim thay!!!");
             }
             Console.ReadLine();
-        }
-        
+        }       
         static void Thoat()
         {
             Console.Clear();
