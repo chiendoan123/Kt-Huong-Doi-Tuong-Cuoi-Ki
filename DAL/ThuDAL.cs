@@ -9,6 +9,10 @@ namespace DAL
     public class ThuDAL
     {
         static string path = @"D:\dataThu.txt";
+        public static void SapXep(string duLieu)
+        {
+            File.WriteAllText(path, duLieu);
+        }
         public static void ThemThu(string duLieu)
         {
             File.WriteAllText(path, duLieu);
