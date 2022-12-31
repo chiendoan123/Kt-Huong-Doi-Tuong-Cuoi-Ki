@@ -11,7 +11,7 @@ namespace BUS
     {
         public static void SapXep(List<ChuongDTO> ListChuong)
         {
-            string dulieu = "Idthu\tLoai";
+            string dulieu = "Idchuong\tTenchuong";
             for (int i = 0; i < ListChuong.Count; i++)
             {
                 dulieu += string.Format("\r\n{0}\t{1}", ListChuong[i].IDchuong, ListChuong[i].Tenchuong);
@@ -36,9 +36,13 @@ namespace BUS
             }
             ChuongDAL.XoaChuong(dulieu);
         }
-        public static void Sua(int idCanSua, ChuongDTO chuong)
+        public static void Sua(int idCanSua, List<ChuongDTO> ListChuong)
         {
-            string dulieu = chuong.IDchuong + "\t" + chuong.Tenchuong + "\t" ;
+            string dulieu = "IDchuong\tTenchuong\t";
+            for (int i = 0; i < ListChuong.Count; i++)
+            {
+                dulieu += string.Format("\r\n{0}\t{1}", ListChuong[i].IDchuong, ListChuong[i].Tenchuong);
+            }
             ChuongDAL.SuaChuong(idCanSua, dulieu);
         }
         public static string timkiem(int idCanTim)

@@ -36,9 +36,13 @@ namespace BUS
             }
             KhuDAL.XoaKhu(dulieu);
         }
-        public static void Sua(int idCanSua, KhuDTO khu)
+        public static void Sua(int idCanSua, List<KhuDTO> ListKhu)
         {
-            string dulieu = khu.Idkhu + "\t" + khu.Tenkhu + "\t";
+            string dulieu = "Idkhu\tTenkhu\t";
+            for (int i = 0; i < ListKhu.Count; i++)
+            {
+                dulieu += string.Format("\r\n{0}\t{1}", ListKhu[i].Idkhu, ListKhu[i].Tenkhu);
+            }
             KhuDAL.SuaKhu(idCanSua, dulieu);
         }
         public static string timkiem(int idCanTim)
@@ -48,11 +52,6 @@ namespace BUS
         public static string GetAllDuLieu()
         {
             return KhuDAL.GetAllDuLieu();
-        }
-
-        public static void Sua(List<KhuDTO> listKhu)
-        {
-            throw new NotImplementedException();
-        }
+        }       
     }
 }
