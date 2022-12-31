@@ -8,6 +8,15 @@ namespace BUS
 {
     public class ThuBUS
     {
+        public static void SapXep(List<ThuDTO> ListThus)
+        {
+            string dulieu = "Idthu\tLoai\tTen\tNguongoc\tSuckhoe";
+            for (int i = 0; i < ListThus.Count; i++)
+            {
+                dulieu += string.Format("\r\n{0}\t{1}\t{2}\t{3}\t{4}", ListThus[i].Idthu, ListThus[i].Loai, ListThus[i].Ten, ListThus[i].Nguongoc, ListThus[i].Suckhoe);
+            }
+            ThuDAL.SapXep(dulieu);
+        }
         public static void Them(List<ThuDTO> ListThus)
         {
             string dulieu="Idthu\tLoai\tTen\tNguongoc\tSuckhoe";
