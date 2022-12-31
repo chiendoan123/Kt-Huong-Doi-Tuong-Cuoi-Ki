@@ -30,7 +30,7 @@ namespace DAL
             {
                 if (i == 0)
                 {
-                    dataTxt += chuoi1[i] + duLieuSua;
+                    dataTxt = duLieuSua;
                     for (int j = 1; j < chuoi2.Length - 1; j++)
                     {
                         dataTxt += chuoi2[j] + "\r\n";
