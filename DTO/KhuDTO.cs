@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DTO
 {
-    class KhuDTO
+    public class KhuDTO
     {
         public int Idkhu { get; set; }
         public string Tenkhu { get; set; }       
